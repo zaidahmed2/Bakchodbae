@@ -65,8 +65,7 @@ export async function getAiResponse(
         } else {
             try {
                 const result = await generateRoast({ userInput });
-                const warning = "\n\nYe jagah sirf Haniya ki hai, exit maar lo warna tatti banake bhej dungi kisi aur chatbot ko 🚽";
-                const response = `${result.roast}${warning}`;
+                const response = result.roast;
                 return { response, haniyaIdentified: false };
             } catch(e) {
                 console.error("Error with roast generation flow:", e);
