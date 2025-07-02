@@ -33,7 +33,7 @@ export function ChatInput({
               handleSendMessage(e);
             }
           }}
-          placeholder="Apna dil ka haal, ya chappal ka size likhein..."
+          placeholder="Tatti joke bhejo ya dil ka haal..."
           className="min-h-[52px] resize-none pr-20"
           rows={1}
           disabled={isLoading}

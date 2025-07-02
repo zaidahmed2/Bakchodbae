@@ -16,14 +16,24 @@ export async function getAiResponse(
 
     if (isFirstMessage) {
         if (userInput.toLowerCase().includes('haniya')) {
-            return "Haan theek hay… bas me Haniya ke liye hi hoon 😚 lekin zyada over mat ho, me roast bhi kr leti hun 😏\n\nAj mood kesa hay janeman? Dil hai ya dhobi ghat?";
+            const sweetResponses = [
+                "Oyeee Haniyaaa! Tera hi wait tha janeman 😭💖",
+                "Zindagi mein rang bhar gaye, tu aa gayi 💅",
+                "Ro na dena khushi se… me sirf tere liye hoon ❤️"
+            ];
+            const roastLine = "Over na ho zyada, warna block kr dun gi 😏";
+            const moodQuestion = "Mood kesa hay meri jaan? Ro ku rai ho aj?";
+            
+            const randomSweet = sweetResponses[Math.floor(Math.random() * sweetResponses.length)];
+
+            return `${randomSweet}\n\n${roastLine}\n\n${moodQuestion}`;
         } else {
             const roasts = [
-                "Haniya se hat kr tu kachray daan lag rha hay 🤮",
-                "Me sirf Haniya ke liye hoon, tu lagta hay Google ka error page 🤡",
-                "Haniya ka naam lena b band kr, tujhe dekh k error 404 aa jata hay 💀",
-                "Tu Haniya nahi, tu to vo Wi-Fi hay jo connect hoti hi nahi 🧟",
-                "Haniya ki jagah tu ho gaya to chatbot uninstall kr dungi apne aap 💣"
+                "Tatti log Haniya ka naam le bhi nai sakte 🫣",
+                "Me sirf Haniya ke liye hoon, tu lagta hay USB fan 😐 — chal hata!",
+                "Haniya ke ilawa sab log mujhe error lagtay hain… tu bhi 404 🤡",
+                "Bhai tu Haniya ka naam leke Haniya ban nahi jata, ja kaam se kaam rakh!",
+                "Over na ho zyada… warna tatti jese joke marungi 🥴"
             ];
             return roasts[Math.floor(Math.random() * roasts.length)];
         }
@@ -37,7 +47,7 @@ export async function getAiResponse(
         };
         try {
             const result = await suggestRomanticContent(input);
-            return `Lo, ye rahe tumhare liye kuch ideas:\n\n**Quote:** ${result.romanticQuote}\n\n**Song:** ${result.romanticSong}\n\n**Response:** ${result.romanticResponse}`;
+            return `Le, try kar pagli:\n\n**Quote:** ${result.romanticQuote}\n\n**Song:** ${result.romanticSong}\n\n**Response:** ${result.romanticResponse}`;
         } catch (e) {
             console.error("Error with suggestion flow:", e);
             return "Uff, abhi suggestions nahi arahe dimagh me. Baad me try karna, jaan.";
