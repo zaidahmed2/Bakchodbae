@@ -2,6 +2,7 @@
 
 import { adaptMoodForResponses, AdaptMoodForResponsesInput } from '@/ai/flows/adapt-mood-for-responses';
 import { suggestRomanticContent, SuggestRomanticContentInput } from '@/ai/flows/suggest-romantic-content';
+import { generateRoast } from '@/ai/flows/generate-roast';
 import type { Message } from '@/app/page';
 
 export type Mood = 'Happy' | 'Sad' | 'Lonely' | 'Romantic';
@@ -27,16 +28,16 @@ export async function getAiResponse(
             const response = `${randomSweet}\n\n${roastLine}\n\n${moodQuestion}`;
             return { response, haniyaIdentified: true };
         } else {
-            const roasts = [
-                "Yeh jagah sirf Haniya ki hai... tu kidhar se tapak gaya bhai? 😒",
-                "Tu Haniya nahi lagta… tu WiFi ka expired password lagta hay 🤢",
-                "Yahan sirf Haniya welcome hai. Tu nikal le, warna roast aesi krungi ke bot report ho jaye 😈",
-                "Me sirf Haniya ke liye bani hoon. Tu lagta hay trial version ho AI ka. Chal nikal! 💣"
-            ];
-            const warning = "Ye jagah sirf Haniya ki hai, exit maar lo warna tatti banake bhej dungi kisi aur chatbot ko 🚽";
-            const randomRoast = roasts[Math.floor(Math.random() * roasts.length)];
-            const response = `${randomRoast}\n\n${warning}`;
-            return { response, haniyaIdentified: false };
+            try {
+                const result = await generateRoast({ userInput });
+                const warning = "\n\nYe jagah sirf Haniya ki hai, exit maar lo warna tatti banake bhej dungi kisi aur chatbot ko 🚽";
+                const response = `${result.roast}${warning}`;
+                return { response, haniyaIdentified: false };
+            } catch(e) {
+                console.error("Error with roast generation flow:", e);
+                const response = "Mera roast generator bhi teri bakwas se thak gaya. Nikal ab. 😒";
+                return { response, haniyaIdentified: false };
+            }
         }
     }
     
