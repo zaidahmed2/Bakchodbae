@@ -1,8 +1,6 @@
 'use client';
 
-import { useState, useRef, FormEvent, useEffect } from 'react';
-import { Heart, Mic, Send } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useState, FormEvent } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { ChatHeader } from '@/components/chat/chat-header';
 import { ChatMessages } from '@/components/chat/chat-messages';
@@ -26,7 +24,6 @@ export default function HaniyaPage() {
     },
   ]);
   const [input, setInput] = useState('');
-  const [mood, setMood] = useState<Mood>('Romantic');
   const [isLoading, setIsLoading] = useState(false);
   const [isHaniya, setIsHaniya] = useState(false);
 
@@ -50,6 +47,7 @@ export default function HaniyaPage() {
     setIsLoading(true);
 
     try {
+      const mood: Mood = 'Romantic';
       const { response: aiResponse, haniyaIdentified } = await getAiResponse(messages, input, mood, isHaniya);
 
       if (haniyaIdentified && !isHaniya) {
@@ -75,17 +73,10 @@ export default function HaniyaPage() {
       setIsLoading(false);
     }
   };
-  
-  const handleVoiceInput = () => {
-    toast({
-      title: "Voice input isn't available just yet, my love.",
-      description: 'For now, please type your message to me.',
-    });
-  }
 
   return (
     <div className="flex h-screen w-full flex-col bg-background">
-      <ChatHeader mood={mood} setMood={setMood} />
+      <ChatHeader />
       <ChatMessages messages={messages} />
       <ChatInput
         input={input}
@@ -93,15 +84,6 @@ export default function HaniyaPage() {
         handleSendMessage={handleSendMessage}
         isLoading={isLoading}
       />
-      <Button
-        variant="ghost"
-        size="icon"
-        onClick={handleVoiceInput}
-        className="absolute bottom-24 right-4 md:bottom-28 md:right-8 z-20 h-16 w-16 rounded-full bg-primary text-primary-foreground shadow-lg transition-transform hover:scale-110 active:scale-100"
-        aria-label="Voice input"
-      >
-        <Mic className="h-8 w-8" />
-      </Button>
     </div>
   );
 }

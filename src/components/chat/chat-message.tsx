@@ -3,14 +3,12 @@
 import { cn } from '@/lib/utils';
 import type { Message } from '@/app/page';
 import { ChatAvatar } from './chat-avatar';
-import { Sparkles } from 'lucide-react';
 
 interface ChatMessageProps {
   message: Message;
-  isFirst: boolean;
 }
 
-export function ChatMessage({ message, isFirst }: ChatMessageProps) {
+export function ChatMessage({ message }: ChatMessageProps) {
   const { role, content } = message;
   const isUser = role === 'user';
   const isAi = role === 'ai';
@@ -56,7 +54,7 @@ export function ChatMessage({ message, isFirst }: ChatMessageProps) {
           isUser
             ? 'rounded-br-none bg-primary text-primary-foreground'
             : 'rounded-bl-none bg-card text-card-foreground',
-          isFirst && isAi && 'animate-glow'
+          isAi && 'animate-glow'
         )}
       >
         <p className="whitespace-pre-wrap text-sm leading-relaxed">

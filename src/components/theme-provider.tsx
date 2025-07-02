@@ -13,32 +13,18 @@ type ThemeProviderState = {
 const ThemeProviderContext = createContext<ThemeProviderState | undefined>(undefined)
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('light')
-
-  useEffect(() => {
-    const storedTheme = localStorage.getItem('haniya-theme') as Theme | null
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    
-    if (storedTheme) {
-      setTheme(storedTheme)
-    } else if(prefersDark) {
-      setTheme('dark')
-    } else {
-      setTheme('light')
-    }
-  }, [])
+  const theme: Theme = 'dark'
 
   useEffect(() => {
     document.documentElement.classList.remove('light', 'dark')
-    document.documentElement.classList.add(theme)
-    localStorage.setItem('haniya-theme', theme)
-  }, [theme])
+    document.documentElement.classList.add('dark')
+  }, [])
 
-  const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-  };
-
-  const value = useMemo(() => ({ theme, setTheme, toggleTheme }), [theme]);
+  const value = useMemo(() => ({ 
+    theme, 
+    setTheme: () => {}, 
+    toggleTheme: () => {} 
+  }), [theme]);
 
   return (
     <ThemeProviderContext.Provider value={value}>

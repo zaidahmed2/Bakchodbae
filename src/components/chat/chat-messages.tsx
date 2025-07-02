@@ -24,8 +24,8 @@ export function ChatMessages({ messages }: ChatMessagesProps) {
   return (
     <ScrollArea className="flex-1" ref={scrollAreaRef}>
       <div className="space-y-6 p-4 md:p-6">
-        {messages.map((message, index) => (
-          <ChatMessage key={message.id} message={message} isFirst={index === 0}/>
+        {messages.map((message) => (
+          <ChatMessage key={message.id} message={message} />
         ))}
       </div>
     </ScrollArea>
