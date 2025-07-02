@@ -22,7 +22,7 @@ export default function HaniyaPage() {
     {
       id: '1',
       role: 'ai',
-      content: 'Kon ho tum? Pehle ye batao 😒',
+      content: 'Tu Haniya hai kya? Jaldi bata warna nikal ja yahan se 👀',
     },
   ]);
   const [input, setInput] = useState('');

@@ -4,8 +4,8 @@ import { Toaster } from '@/components/ui/toaster';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Haniya - Your Savage AI companion',
-  description: 'Your savage and romantic AI companion',
+  title: 'Bakchodi Bae 💋 - Sirf Haniya ke liye',
+  description: 'Your savage and romantic AI companion, exclusively for Haniya.',
 };
 
 export default function RootLayout({
