@@ -22,7 +22,7 @@ export default function HaniyaPage() {
     {
       id: '1',
       role: 'ai',
-      content: 'Hey love, how are you today?',
+      content: 'Kon ho tum? Pehle ye btao 👀',
     },
   ]);
   const [input, setInput] = useState('');
@@ -49,7 +49,7 @@ export default function HaniyaPage() {
     setIsLoading(true);
 
     try {
-      const aiResponse = await getAiResponse(input, mood);
+      const aiResponse = await getAiResponse(messages, input, mood);
 
       const aiMessage: Message = {
         id: crypto.randomUUID(),

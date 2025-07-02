@@ -33,7 +33,7 @@ export function ChatInput({
               handleSendMessage(e);
             }
           }}
-          placeholder="Type your message, my love..."
+          placeholder="Apna dil ka haal, ya chappal ka size likhein..."
           className="min-h-[52px] resize-none pr-20"
           rows={1}
           disabled={isLoading}

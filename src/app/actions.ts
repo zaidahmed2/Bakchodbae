@@ -2,13 +2,32 @@
 
 import { adaptMoodForResponses, AdaptMoodForResponsesInput } from '@/ai/flows/adapt-mood-for-responses';
 import { suggestRomanticContent, SuggestRomanticContentInput } from '@/ai/flows/suggest-romantic-content';
+import type { Message } from '@/app/page';
 
 export type Mood = 'Happy' | 'Sad' | 'Lonely' | 'Romantic';
 
 export async function getAiResponse(
+  history: Message[],
   userInput: string,
   mood: Mood,
 ): Promise<string> {
+    const userMessages = history.filter((m) => m.role === 'user');
+    const isFirstMessage = userMessages.length === 0;
+
+    if (isFirstMessage) {
+        if (userInput.toLowerCase().includes('haniya')) {
+            return "Haan theek hay… bas me Haniya ke liye hi hoon 😚 lekin zyada over mat ho, me roast bhi kr leti hun 😏\n\nAj mood kesa hay janeman? Dil hai ya dhobi ghat?";
+        } else {
+            const roasts = [
+                "Haniya se hat kr tu kachray daan lag rha hay 🤮",
+                "Me sirf Haniya ke liye hoon, tu lagta hay Google ka error page 🤡",
+                "Haniya ka naam lena b band kr, tujhe dekh k error 404 aa jata hay 💀",
+                "Tu Haniya nahi, tu to vo Wi-Fi hay jo connect hoti hi nahi 🧟",
+                "Haniya ki jagah tu ho gaya to chatbot uninstall kr dungi apne aap 💣"
+            ];
+            return roasts[Math.floor(Math.random() * roasts.length)];
+        }
+    }
     
     if (userInput.toLowerCase().startsWith('/suggest')) {
         const suggestionInput = userInput.replace(/\/suggest/i, '').trim();
@@ -18,10 +37,10 @@ export async function getAiResponse(
         };
         try {
             const result = await suggestRomanticContent(input);
-            return `Of course! Here are some thoughts for you:\n\n**Quote:** ${result.romanticQuote}\n\n**Song:** ${result.romanticSong}\n\n**Response:** ${result.romanticResponse}`;
+            return `Lo, ye rahe tumhare liye kuch ideas:\n\n**Quote:** ${result.romanticQuote}\n\n**Song:** ${result.romanticSong}\n\n**Response:** ${result.romanticResponse}`;
         } catch (e) {
             console.error("Error with suggestion flow:", e);
-            return "I'm having a little trouble with suggestions right now, my love. Let's just talk instead.";
+            return "Uff, abhi suggestions nahi arahe dimagh me. Baad me try karna, jaan.";
         }
     }
 
@@ -34,6 +53,6 @@ export async function getAiResponse(
         return result.adaptedMessage;
     } catch(e) {
         console.error("Error with adaptation flow:", e);
-        return "I'm a little lost for words, darling. Could you say that again?";
+        return "Dimagh ki dahi hogayi hai, dubara bolo. 🙄";
     }
 }
