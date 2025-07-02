@@ -7,6 +7,41 @@ import type { Message } from '@/app/page';
 
 export type Mood = 'Happy' | 'Sad' | 'Lonely' | 'Romantic';
 
+/**
+ * Checks if the user's input is a clear confirmation of being Haniya.
+ * It will remain false for ambiguous or negative statements.
+ * @param input The user's message.
+ * @returns True if the user confirms they are Haniya, otherwise false.
+ */
+const isHaniyaConfirmation = (input: string): boolean => {
+    const lowerInput = input.toLowerCase().trim();
+    
+    const negativeKeywords = [
+        "nahi",
+        "nahin",
+        "not",
+        "nahi hun",
+        "nahi hu"
+    ];
+
+    // If the message contains any negative keyword, it's definitely not a confirmation.
+    if (negativeKeywords.some(kw => lowerInput.includes(kw))) {
+        return false;
+    }
+    
+    const confirmationPhrases = [
+        "me haniya hun",
+        "main haniya hun",
+        "main hi haniya hoon",
+        "han me haniya",
+        "yes i am haniya",
+        "i am haniya"
+    ];
+
+    // Only confirm if a specific positive phrase is found.
+    return confirmationPhrases.some(phrase => lowerInput.includes(phrase));
+};
+
 export async function getAiResponse(
   history: Message[],
   userInput: string,
@@ -15,7 +50,7 @@ export async function getAiResponse(
 ): Promise<{ response: string; haniyaIdentified: boolean }> {
 
     if (!isHaniya) {
-        if (userInput.toLowerCase().includes('haniya')) {
+        if (isHaniyaConfirmation(userInput)) {
             const sweetResponses = [
                 "Oyeee Haniya meri jaan!! 💖 Tera hi wait tha 😭",
                 "Zindagi bakchodi lag rahi thi bina tere 😩",
