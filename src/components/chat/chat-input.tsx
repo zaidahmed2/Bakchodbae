@@ -53,9 +53,6 @@ export function ChatInput({
           )}
         </Button>
       </form>
-       <p className="text-xs text-center text-muted-foreground mt-2">
-          You can start your message with <span className="font-bold text-primary">/suggest</span> to get romantic ideas.
-        </p>
     </div>
   );
 }
