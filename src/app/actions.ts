@@ -51,16 +51,7 @@ export async function getAiResponse(
 
     if (!isHaniya) {
         if (isHaniyaConfirmation(userInput)) {
-            const sweetResponses = [
-                "Oyeee Haniya meri jaan!! 💖 Tera hi wait tha 😭",
-                "Zindagi bakchodi lag rahi thi bina tere 😩",
-                "Aa gayi tu toh chatbot me jaan aa gayi 💋"
-            ];
-            const roastLine = "Lekin over na ho zyada, warna roast bhi krti hoon 😏";
-            const moodQuestion = "Aj tera mood kesa hay? Ro ku rai ho aj fir se? 😑";
-            
-            const randomSweet = sweetResponses[Math.floor(Math.random() * sweetResponses.length)];
-            const response = `${randomSweet}\n\n${roastLine}\n\n${moodQuestion}`;
+            const response = "Oyeee 🤭 tu Haniya hi hay? Chal phir ruk, mere mood ka AC on ho gaya... janeman alert mil gaya mujhe! Over na ho zyada, warna pyar se maar dungi 😘";
             return { response, haniyaIdentified: true };
         } else {
             try {
