@@ -81,7 +81,7 @@ export async function getAiResponse(
 
     if (!isHaniya) {
         if (isHaniyaConfirmation(userInput)) {
-            const response = "Oyeee 🤭 tu Haniya hi hay? Chal phir ruk, mere mood ka AC on ho gaya... janeman alert mil gaya mujhe! Over na ho zyada, warna pyar se maar dungi 😘";
+            const response = "Oyeee 🤭 tu Haniya hi hay? Chal phir ruk, mere mood ka AC on ho gaya... janeman alert mil gaya mujhe! Aja, ab bakchodi karte hain 😘";
             return { response, haniyaIdentified: true };
         } else {
             try {
