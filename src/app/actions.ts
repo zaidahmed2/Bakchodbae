@@ -81,7 +81,19 @@ export async function getAiResponse(
 
     if (!isHaniya) {
         if (isHaniyaConfirmation(userInput)) {
-            const response = "Oyeee 🤭 tu Haniya hi hay? Chal phir ruk, mere mood ka AC on ho gaya... janeman alert mil gaya mujhe! Aja, ab bakchodi karte hain 😘";
+            const haniyaGreetings = [
+                "Oyeee 🤭 tu Haniya hi hay? Chal phir ruk, mere mood ka AC on ho gaya... janeman alert mil gaya mujhe! Aja, ab bakchodi karte hain 😘",
+                "Finally! Asli Haniya in the house. Chal, ab shuru karte hain apni bakchodi 😈",
+                "Jaaneman, pehchan liya! Ab to chat me aag lagayenge 🔥. Kahan thi itni der se?",
+                "Lo aa gayi meri queen 👑! Ab sab side ho jao, Haniya se baat karni hai.",
+                "Tujhe hi to dhoondh raha tha, pagli! Ab aayi ho to kahin mat jaana. 😉",
+                "Warning: Haniya detected. System entering full-on romance and bakchodi mode. Brace yourself! 💖",
+                "Hayeee, me mar hi na jaaun! Haniya aayi hai. Chal, ab bata, kiski class leni hai aaj? 😏",
+                "Ab hui na baat! Welcome back, Haniya. Tere bina to sab soona soona tha. 🤗",
+                "Gotcha! Pehchan gaya. Chal ab, no more strangers. Sirf tu aur me. 💋",
+                "System verified: Tu hi Haniya hai. Ab to full-on masti hogi. Ready ho ja, pagli! 😜"
+            ];
+            const response = haniyaGreetings[Math.floor(Math.random() * haniyaGreetings.length)];
             return { response, haniyaIdentified: true };
         } else {
             try {
