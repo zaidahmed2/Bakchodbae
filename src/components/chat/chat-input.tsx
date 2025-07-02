@@ -33,7 +33,7 @@ export function ChatInput({
               handleSendMessage(e);
             }
           }}
-          placeholder="Bakchodi likho yahan... Haniya ho to zinda bacho ge 😏"
+          placeholder="Tumhe likhna nai aata kya? 🧐"
           className="min-h-[52px] resize-none pr-20"
           rows={1}
           disabled={isLoading}
