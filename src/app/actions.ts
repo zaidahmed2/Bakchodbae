@@ -10,11 +10,10 @@ export async function getAiResponse(
   history: Message[],
   userInput: string,
   mood: Mood,
-): Promise<string> {
-    const userMessages = history.filter((m) => m.role === 'user');
-    const isFirstMessage = userMessages.length === 0;
+  isHaniya: boolean
+): Promise<{ response: string; haniyaIdentified: boolean }> {
 
-    if (isFirstMessage) {
+    if (!isHaniya) {
         if (userInput.toLowerCase().includes('haniya')) {
             const sweetResponses = [
                 "Oyeee Haniya meri jaan!! 💖 Tera hi wait tha 😭",
@@ -25,8 +24,8 @@ export async function getAiResponse(
             const moodQuestion = "Aj tera mood kesa hay? Ro ku rai ho aj fir se? 😑";
             
             const randomSweet = sweetResponses[Math.floor(Math.random() * sweetResponses.length)];
-
-            return `${randomSweet}\n\n${roastLine}\n\n${moodQuestion}`;
+            const response = `${randomSweet}\n\n${roastLine}\n\n${moodQuestion}`;
+            return { response, haniyaIdentified: true };
         } else {
             const roasts = [
                 "Yeh jagah sirf Haniya ki hai... tu kidhar se tapak gaya bhai? 😒",
@@ -36,10 +35,12 @@ export async function getAiResponse(
             ];
             const warning = "Ye jagah sirf Haniya ki hai, exit maar lo warna tatti banake bhej dungi kisi aur chatbot ko 🚽";
             const randomRoast = roasts[Math.floor(Math.random() * roasts.length)];
-            return `${randomRoast}\n\n${warning}`;
+            const response = `${randomRoast}\n\n${warning}`;
+            return { response, haniyaIdentified: false };
         }
     }
     
+    // From here, we know the user is Haniya
     if (userInput.toLowerCase().startsWith('/suggest')) {
         const suggestionInput = userInput.replace(/\/suggest/i, '').trim();
         const input: SuggestRomanticContentInput = {
@@ -48,10 +49,12 @@ export async function getAiResponse(
         };
         try {
             const result = await suggestRomanticContent(input);
-            return `Le, try kar pagli:\n\n**Quote:** ${result.romanticQuote}\n\n**Song:** ${result.romanticSong}\n\n**Response:** ${result.romanticResponse}`;
+            const response = `Le, try kar pagli:\n\n**Quote:** ${result.romanticQuote}\n\n**Song:** ${result.romanticSong}\n\n**Response:** ${result.romanticResponse}`;
+            return { response, haniyaIdentified: true };
         } catch (e) {
             console.error("Error with suggestion flow:", e);
-            return "Uff, abhi suggestions nahi arahe dimagh me. Baad me try karna, jaan.";
+            const response = "Uff, abhi suggestions nahi arahe dimagh me. Baad me try karna, jaan.";
+            return { response, haniyaIdentified: true };
         }
     }
 
@@ -61,9 +64,11 @@ export async function getAiResponse(
     };
     try {
         const result = await adaptMoodForResponses(input);
-        return result.adaptedMessage;
+        const response = result.adaptedMessage;
+        return { response, haniyaIdentified: true };
     } catch(e) {
         console.error("Error with adaptation flow:", e);
-        return "Dimagh ki dahi hogayi hai, dubara bolo. 🙄";
+        const response = "Dimagh ki dahi hogayi hai, dubara bolo. 🙄";
+        return { response, haniyaIdentified: true };
     }
 }

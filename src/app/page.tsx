@@ -28,6 +28,7 @@ export default function HaniyaPage() {
   const [input, setInput] = useState('');
   const [mood, setMood] = useState<Mood>('Romantic');
   const [isLoading, setIsLoading] = useState(false);
+  const [isHaniya, setIsHaniya] = useState(false);
 
   const handleSendMessage = async (e: FormEvent) => {
     e.preventDefault();
@@ -49,7 +50,11 @@ export default function HaniyaPage() {
     setIsLoading(true);
 
     try {
-      const aiResponse = await getAiResponse(messages, input, mood);
+      const { response: aiResponse, haniyaIdentified } = await getAiResponse(messages, input, mood, isHaniya);
+
+      if (haniyaIdentified && !isHaniya) {
+        setIsHaniya(true);
+      }
 
       const aiMessage: Message = {
         id: crypto.randomUUID(),
