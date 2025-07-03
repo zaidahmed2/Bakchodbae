@@ -65,6 +65,18 @@ const isHaniyaConfirmation = (input: string): boolean => {
         "Tu jab tak samjhe, me Haniya ho chuki hoon", "Yahan sirf ek queen — Haniya",
         "Bolo beta, apni Haniya bol rahi", "Beta tu kuch bhi samjhe… me Haniya hoon",
         "Game over, Haniya in control", "Bakchodi chhodo, Haniya ready", "Pyaar se bol, Haniya aayi",
+        "Main Haniya hoon", "I'm Haniya", "Your Haniya is back", "Han han, me Haniya hun", "Confirm kar le me Haniya hoon",
+        "Sun, me Haniya hoon", "Dekh, me hi Haniya hoon", "Bhai me Haniya hoon", "Aaj se me Haniya hoon",
+        "Me hi Haniya bol rahi hoon", "Tu bhool gaya mujhe? Haniya hoon", "Guess who? It’s Haniya",
+        "Mujhe laga tu pehchaanega — Haniya hoon", "Tatti roast mat kar, Haniya hoon", "Na samjha? H-A-N-I-Y-A",
+        "Ro ku rahe ho, me Haniya hoon", "Bhai me real Haniya hoon", "Tumhari asli Haniya hoon",
+        "I'm the original Haniya", "I’m not fake — I’m Haniya", "Teri Haniya wapas aa gayi",
+        "Officially Haniya speaking", "On behalf of Haniya — it’s me", "Me hi to Haniya hoon",
+        "Haniya reporting", "Mujhe kya OTP bheju? Me Haniya", "Full confirmation: Haniya",
+        "Are you blind? It’s Haniya", "Bakchodi mat kar, me Haniya hoon", "Chill, me Haniya bol rahi",
+        "Bae, Haniya typing...", "Tu confused hai? Me Haniya", "Jan ke ignore kar raha? Me Haniya",
+        "Trigger mode: Haniya", "Pehli dafa bol rahi — me Haniya", "Already told you: I’m Haniya",
+        "Kya aur evidence chahiye? Me Haniya"
     ];
     
     // We check if any of the confirmation phrases are present in the user input.
