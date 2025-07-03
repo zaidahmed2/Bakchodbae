@@ -42,7 +42,7 @@ Your task is to determine the user's identity status:
 2.  **REJECTED**: The user has definitively denied they are Haniya (e.g., "no", "I'm not Haniya", "nahi hun") or has clearly indicated they are someone else.
 3.  **UNCERTAIN**: The user's response is ambiguous, unrelated, or you cannot be sure.
 
-If the status is **UNCERTAIN**, you MUST provide a \`clarificationQuestion\`. This should be a short, polite, and slightly flirty question in Roman Urdu to confirm if they are Haniya. **IMPORTANT: Always use 'tum', never 'tu'.**
+If the status is **UNCERTAIN**, you MUST provide a \`clarificationQuestion\`. This should be a short, polite, and slightly flirty question in Roman Urdu to confirm if they are Haniya. **NON-NEGOTIABLE RULE: Always use 'tum', never 'tu'. The word 'tu' is strictly forbidden.**
 
 Examples:
 - User says "Han me Haniya hun" -> status: "CONFIRMED"
