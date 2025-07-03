@@ -8,7 +8,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import type { Mood } from '@/app/actions';
-import { Smile, Heart, Frown, User as UserIcon } from 'lucide-react';
+import { Smile, Heart, Frown, Flame, MicOff } from 'lucide-react';
 
 interface MoodSelectorProps {
   mood: Mood;
@@ -18,8 +18,9 @@ interface MoodSelectorProps {
 const moodOptions: { value: Mood; label: string; icon: React.ReactNode }[] = [
   { value: 'Happy', label: 'Happy', icon: <Smile className="h-4 w-4" /> },
   { value: 'Sad', label: 'Sad', icon: <Frown className="h-4 w-4" /> },
-  { value: 'Lonely', label: 'Lonely', icon: <UserIcon className="h-4 w-4" /> },
-  { value: 'Romantic', label: 'Romantic', icon: <Heart className="h-4 w-4" /> },
+  { value: 'Savage', label: 'Savage', icon: <Flame className="h-4 w-4" /> },
+  { value: 'Flirty', label: 'Flirty', icon: <Heart className="h-4 w-4" /> },
+  { value: 'Off', label: 'Off', icon: <MicOff className="h-4 w-4" /> },
 ];
 
 export function MoodSelector({ mood, setMood }: MoodSelectorProps) {

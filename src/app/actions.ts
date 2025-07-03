@@ -6,7 +6,7 @@ import { generateRoast } from '@/ai/flows/generate-roast';
 import { confirmHaniyaIdentity, ConfirmHaniyaIdentityInput } from '@/ai/flows/confirm-haniya-identity';
 import type { Message } from '@/app/page';
 
-export type Mood = 'Happy' | 'Sad' | 'Lonely' | 'Romantic';
+export type Mood = 'Happy' | 'Sad' | 'Savage' | 'Flirty' | 'Off';
 
 export async function getAiResponse(
   history: Message[],
@@ -64,7 +64,7 @@ export async function getAiResponse(
         const suggestionInput = userInput.replace(/\/suggest/i, '').trim();
         const input: SuggestRomanticContentInput = {
             userInput: suggestionInput || `feeling ${mood.toLowerCase()}`, // Provide context if user input is empty
-            mood,
+            mood: 'Romantic', // Suggest flow has its own logic
         };
         try {
             const result = await suggestRomanticContent(input);
@@ -78,6 +78,7 @@ export async function getAiResponse(
     }
 
     const input: AdaptMoodForResponsesInput = {
+        // @ts-ignore - We are using a different set of moods on the client
         mood,
         message: userInput,
     };

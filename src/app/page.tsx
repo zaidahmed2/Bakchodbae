@@ -26,6 +26,7 @@ export default function HaniyaPage() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isHaniya, setIsHaniya] = useState(false);
+  const [mood, setMood] = useState<Mood>('Happy');
 
   const handleSendMessage = async (e: FormEvent) => {
     e.preventDefault();
@@ -47,7 +48,6 @@ export default function HaniyaPage() {
     setIsLoading(true);
 
     try {
-      const mood: Mood = 'Romantic';
       const { response: aiResponse, haniyaIdentified } = await getAiResponse(messages, input, mood, isHaniya);
 
       if (haniyaIdentified && !isHaniya) {
@@ -76,7 +76,7 @@ export default function HaniyaPage() {
 
   return (
     <div className="flex h-screen w-full flex-col bg-background">
-      <ChatHeader />
+      <ChatHeader isHaniya={isHaniya} mood={mood} setMood={setMood} />
       <ChatMessages messages={messages} />
       <ChatInput
         input={input}
