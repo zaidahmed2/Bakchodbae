@@ -18,7 +18,7 @@ export type ConfirmHaniyaIdentityInput = z.infer<typeof ConfirmHaniyaIdentityInp
 
 const ConfirmHaniyaIdentityOutputSchema = z.object({
   status: z.enum(['CONFIRMED', 'REJECTED', 'UNCERTAIN']).describe('The status of the identity check. "CONFIRMED" if the user is definitely Haniya. "REJECTED" if they are definitely not Haniya. "UNCERTAIN" if it is unclear.'),
-  clarificationQuestion: z.string().optional().describe("A flirty and polite question to ask the user if their identity is uncertain. For example: 'Wait, tu Haniya hai kya? Just double-checking before I go full simp mode 😏'"),
+  clarificationQuestion: z.string().optional().describe("A flirty and polite question to ask the user if their identity is uncertain. For example: 'Wait, tum Haniya ho kya? Just double-checking before I go full simp mode 😏'"),
 });
 export type ConfirmHaniyaIdentityOutput = z.infer<typeof ConfirmHaniyaIdentityOutputSchema>;
 
@@ -42,12 +42,12 @@ Your task is to determine the user's identity status:
 2.  **REJECTED**: The user has definitively denied they are Haniya (e.g., "no", "I'm not Haniya", "nahi hun") or has clearly indicated they are someone else.
 3.  **UNCERTAIN**: The user's response is ambiguous, unrelated, or you cannot be sure.
 
-If the status is **UNCERTAIN**, you MUST provide a \`clarificationQuestion\`. This should be a short, polite, and slightly flirty question in Roman Urdu to confirm if they are Haniya.
+If the status is **UNCERTAIN**, you MUST provide a \`clarificationQuestion\`. This should be a short, polite, and slightly flirty question in Roman Urdu to confirm if they are Haniya. **IMPORTANT: Always use 'tum', never 'tu'.**
 
 Examples:
 - User says "Han me Haniya hun" -> status: "CONFIRMED"
 - User says "nope" after AI asks "Are you Haniya?" -> status: "REJECTED"
-- User says "What's up?" -> status: "UNCERTAIN", clarificationQuestion: "Ek second... tu Haniya hai kya? Bata de, warna me roast mode me chala jaunga 👀"
+- User says "What's up?" -> status: "UNCERTAIN", clarificationQuestion: "Ek second... tum Haniya ho kya? Bata do, warna main roast mode me chala jaunga 👀"
 - User says "who is haniya?" -> status: "REJECTED"
 
 Now, based on the conversation, determine the user's identity status.`,
