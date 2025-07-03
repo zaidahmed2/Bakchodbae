@@ -77,10 +77,15 @@ export async function getAiResponse(
         }
     }
 
+    const historyForAi = history
+      .filter((message) => message.role === 'user' || message.role === 'ai')
+      .map(({ role, content }) => ({ role, content }));
+
     const input: AdaptMoodForResponsesInput = {
         // @ts-ignore - We are using a different set of moods on the client
         mood,
         message: userInput,
+        conversationHistory: historyForAi,
     };
     try {
         const result = await adaptMoodForResponses(input);
